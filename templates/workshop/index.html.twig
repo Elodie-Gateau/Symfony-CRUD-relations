@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Workshop index{% endblock %}
+
+{% block body %}
+    <h1 class= "m-5 text-center">Workshop index</h1>
+<div class = "w-75 p-3 mx-auto">
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Intitulé</th>
+                <th>Description</th>
+                <th>Événement</th>
+                <th>Nombre d'inscrits</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for workshop in workshops %}
+            <tr>
+
+                <td>{{ workshop.title }}</td>
+                <td>{{ workshop.description }}</td>
+                <td>{{ workshop.event.name }}</td>
+                <td><ul> 
+                        <li>  {{ workshop.participants|length }} participant{{ workshop.participants|length > 1 ? "s" : ""}}</li>
+                        
+                    </ul></td>
+                <td>
+                    <a href="{{ path('app_workshop_show', {'id': workshop.id}) }}">Voir</a>
+                    <a href="{{ path('app_workshop_edit', {'id': workshop.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun atelier trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_workshop_new') }}">Ajouter</a>
+    </div>{% endblock %}

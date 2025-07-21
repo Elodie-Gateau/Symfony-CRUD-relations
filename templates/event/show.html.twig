@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Événement : {{ event.name }}{% endblock %}
+
+{% block body %}
+    <h1 class= "m-5 text-center">Événement : {{ event.name }}</h1>
+<div class = "w-50 p-3 mx-auto">
+    <table class="table">
+        <tbody>
+              <tr>
+                <th>Intitulé de l'événement</th>
+                <td>{{ event.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ event.description }}</td>
+            </tr>
+            <tr>
+                <th>Ateliers</th>
+                <td><ul> {% for workshop in event.workshops %}
+                        <li>  {{ workshop.title }} : {{ workshop.participants|length }} participant{{ workshop.participants|length > 1 ? "s" : ""}}</li>
+                        
+                    {% endfor %}</ul></td>
+            </tr>
+        </tbody>
+    </table>
+<div class="mt-5">
+    <a class="btn btn-info" href="{{ path('app_event_index') }}">Retour</a>
+    </div>
+<div class="mt-5">
+    <a class="btn btn-primary" href="{{ path('app_event_edit', {'id': event.id}) }}">Modifier</a>
+</div>
+<div class="mt-2">
+    {{ include('event/_delete_form.html.twig') }}
+    </div>
+        </div>
+{% endblock %}

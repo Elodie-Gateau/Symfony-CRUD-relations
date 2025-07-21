@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des événements{% endblock %}
+
+{% block body %}
+    <h1 class= "m-5 text-center">Liste des événements</h1>
+<div class = "w-75 p-3 mx-auto">
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th scope="col">Intitulé</th>
+                <th scope="col">Description</th>
+                <th scope="col">Ateliers</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event in events %}
+            <tr>
+                {# <td>{{ event.id }}</td> #}
+                <td scope="row">{{ event.name }}</td>
+                <td>{{ event.description }}</td>
+                <td><ul> {% for workshop in event.workshops %}
+                        <li>  {{ workshop.title }} : {{ workshop.participants|length }} participant{{ workshop.participants|length > 1 ? "s" : ""}}</li>
+                        
+                    {% endfor %}</ul></td>
+                <td>
+                    <a href="{{ path('app_event_show', {'id': event.id}) }}">Voir</a>
+                    <a href="{{ path('app_event_edit', {'id': event.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun événement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_event_new') }}">Ajouter</a>
+    </div>
+{% endblock %}

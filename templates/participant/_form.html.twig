@@ -1,0 +1,17 @@
+{{ form_start(form) }}
+
+<div class="mb-4">
+    {{ form_row(form.name) }}
+</div>
+<div class="mb-4">
+    {{ form_row(form.email) }}
+</div>
+<div class="mb-5">
+    {{ form_row(form.workshops) }}
+</div>
+
+<div class="mt-5">
+    <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
+</div>
+
+{{ form_end(form) }}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau participant{% endblock %}
+
+{% block body %}
+    <h1 class= "m-5 text-center">Créer un nouveau participant</h1>
+<div class = "w-50 p-3 mx-auto">
+
+    {{ include('participant/_form.html.twig') }}
+
+    <a class="btn btn-info mt-4" href="{{ path('app_participant_index') }}">Retour</a>
+    </div>
+{% endblock %}
